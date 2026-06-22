@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 # Shared configuration for all environments
 x-base-config: &base-config
@@ -22,10 +22,8 @@ x-base-config: &base-config
   # Least privilege: drop all capabilities, forbid privilege escalation, cap PIDs.
   cap_drop:
     - ALL
-  security_opt:
+    security_opt:
     - no-new-privileges:true
-  pids_limit: 512
-  # Read-only root filesystem; only these paths are writable (tmpfs).
   read_only: true
   tmpfs:
     - /tmp
@@ -51,7 +49,7 @@ services:
   crawl4ai:
     # 1. Default: Pull multi-platform test image from Docker Hub
     # 2. Override with local image via: IMAGE=local-test docker compose up
-    image: ${IMAGE:-unclecode/crawl4ai:${TAG:-latest}}
+    image: crawl4ai:local
     
     # Local build config (used with --build)
     build:
